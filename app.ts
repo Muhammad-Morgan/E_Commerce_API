@@ -13,6 +13,8 @@ const app = express();
 import { connectDB } from "./db/connect";
 
 // error handler requiring
+import { errorHandlerMiddleware } from "./middleware/error-handler";
+import { notFoundMiddleware } from "./middleware/not-found";
 
 // common middleware
 app.use(express.json());
@@ -22,6 +24,12 @@ app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
   res.send("Still testing the water");
 });
+
+// routes
+
+// error fallback
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port: number = (process.env.PORT as unknown as number) || 3000;
 
