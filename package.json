@@ -28,6 +28,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/node": "^25.3.0",
     "nodemon": "^2.0.9",
     "ts-node": "^10.9.2",
