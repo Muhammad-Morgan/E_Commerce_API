@@ -9,25 +9,33 @@ import { Request, Response } from "express";
 import express from "express";
 const app = express();
 
+// rest of packages
+import morgan from "morgan";
+
 // DB
 import { connectDB } from "./db/connect";
 
-// error handler requiring
+// error handler importing
 import { errorHandlerMiddleware } from "./middleware/error-handler";
 import { notFoundMiddleware } from "./middleware/not-found";
 
+// importing routes
+import { authRouter } from "./routes/auth";
+
 // common middleware
 app.use(express.json());
+app.use(morgan("tiny"));
 // app.use(express.static())
 
 // testing route
 app.get("/", (req: Request, res: Response) => {
-  res.send("Still testing the water");
+  res.status(200).send("Still testing the water");
 });
 
 // routes
+app.use("/api/v1/auth", authRouter);
 
-// error fallback
+// error fallback - Order is IMP
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 

@@ -1,7 +1,18 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { StringValue } from "ms";
 
-const UserSchema = new mongoose.Schema({
+// adding the instance methods to the types
+interface IUser extends mongoose.Document {
+  name: string;
+  email: string;
+  password: string;
+  role: "admin" | "user";
+  createJWT(): string;
+}
+const UserSchema = new mongoose.Schema<IUser>({
   name: {
     type: String,
     required: [true, "Please provide a name"],
@@ -12,7 +23,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide email"],
     validate: {
-      validator: validator.isEmail,
+      validator: (value: string) => validator.isEmail(value),
       message: "Please provide valid email",
     },
   },
@@ -28,4 +39,23 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+// adding Schema.pre middleware
+UserSchema.pre(
+  "save" as any,
+  async function (next: mongoose.CallbackWithoutResultAndOptionalError) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  },
+);
+// utilizing schema instance methods
+UserSchema.methods.createJWT = function () {
+  return jwt.sign(
+    { userId: this._id, name: this.name },
+    process.env.JWT_SECRET!,
+    {
+      expiresIn: process.env.JWT_LIFETIME as StringValue,
+    },
+  );
+};
 export const User = mongoose.model("User", UserSchema);
