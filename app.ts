@@ -1,22 +1,29 @@
-require("dotenv").config();
-require("express-async-errors");
+import "express-async-errors";
+import dotenv from "dotenv";
+dotenv.config();
 
 // importing req,res types
 import { Request, Response } from "express";
 
-// requiring express
-const express = require("express");
+// importing express
+import express from "express";
 const app = express();
 
 // DB
-const connectDB: (url: string) => any = require("./db/connect.ts");
+import { connectDB } from "./db/connect";
+
+// error handler requiring
+
+// common middleware
+app.use(express.json());
+// app.use(express.static())
 
 // testing route
 app.get("/", (req: Request, res: Response) => {
   res.send("Still testing the water");
 });
 
-const port: number | string = process.env.PORT || 3000;
+const port: number = (process.env.PORT as unknown as number) || 3000;
 
 const start = async (): Promise<void> => {
   try {
