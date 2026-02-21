@@ -31,7 +31,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port: number = (process.env.PORT as unknown as number) || 3000;
+const port: number = (process.env.PORT as unknown as number) || 5000;
 
 const start = async (): Promise<void> => {
   try {
