@@ -11,6 +11,7 @@ const app = express();
 
 // rest of packages
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 // DB
 import { connectDB } from "./db/connect";
@@ -25,6 +26,7 @@ import { authRouter } from "./routes/auth";
 // common middleware
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(cookieParser(process.env.JWT_SECRET));
 // app.use(express.static())
 
 // testing route
