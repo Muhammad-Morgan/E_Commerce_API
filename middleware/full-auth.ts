@@ -1,9 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { UnauthenticatedError } from "../errors";
-// import { isTokenValid } from "../utils/jwt"
-
+import { isTokenValid } from "../utils";
+interface IRequest extends Request {
+  user: { name?: string; userId: string; role: "admin" | "user" };
+}
 export const authenticateUser = async (
-  req: Request,
+  req: IRequest,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
@@ -20,13 +22,16 @@ export const authenticateUser = async (
   if (!token) throw new UnauthenticatedError("Authentication invalid");
   try {
     // verifying the token
-    // const payload = isTokenValid(token);
-
+    const payload = isTokenValid({ token }) as {
+      name?: string;
+      userId: string;
+      role: "admin" | "user";
+    };
     // attach user and his permissions to the req object
-    // req.user = {
-    //   userId: payload.user.userId,
-    //   role: payload.user.role,
-    // };
+    req.user = {
+      userId: payload.userId,
+      role: payload.role,
+    };
 
     next();
   } catch (error) {

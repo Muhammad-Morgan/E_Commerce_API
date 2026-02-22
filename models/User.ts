@@ -1,16 +1,13 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { StringValue } from "ms";
 
 // adding the instance methods to the types
-interface IUser extends mongoose.Document {
+export interface IUser extends mongoose.Document {
   name: string;
   email: string;
   password: string;
   role: "admin" | "user";
-  createJWT(): string;
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 const UserSchema = new mongoose.Schema<IUser>({
@@ -56,15 +53,5 @@ UserSchema.methods.comparePassword = async function (
 ) {
   const isMatch = await bcrypt.compare(candidatePassword, this.password);
   return isMatch;
-};
-// utilizing schema instance methods
-UserSchema.methods.createJWT = function () {
-  return jwt.sign(
-    { userId: this._id, name: this.name },
-    process.env.JWT_SECRET!,
-    {
-      expiresIn: process.env.JWT_LIFETIME as StringValue,
-    },
-  );
 };
 export const User = mongoose.model("User", UserSchema);

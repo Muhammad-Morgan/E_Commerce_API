@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { UnauthenticatedError } from "../errors";
-
+interface IRequest extends Request {
+  user: { name: string; userId: string; role: "admin" | "user" };
+}
 export const authUser = async (
-  req: Request,
+  req: IRequest,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
@@ -19,6 +21,12 @@ export const authUser = async (
     const decoded = jwt.verify(token, process.env.JWT_SECRET!);
     if (!decoded) throw new UnauthenticatedError("Token invalid");
     // getting the payload and attach it to the user property in req object.
+    const { userId, role, name } = decoded as {
+      userId: string;
+      role: "admin" | "user";
+      name: string;
+    };
+    req["user"] = { userId, role, name };
     next();
   } catch (error) {
     throw new UnauthenticatedError("Unauthorized access");
