@@ -11,6 +11,7 @@ interface IUser extends mongoose.Document {
   password: string;
   role: "admin" | "user";
   createJWT(): string;
+  comparePassword(candidatePassword: string): Promise<boolean>;
 }
 const UserSchema = new mongoose.Schema<IUser>({
   name: {
@@ -48,6 +49,14 @@ UserSchema.pre(
     next();
   },
 );
+
+// comparing password
+UserSchema.methods.comparePassword = async function (
+  candidatePassword: string,
+) {
+  const isMatch = await bcrypt.compare(candidatePassword, this.password);
+  return isMatch;
+};
 // utilizing schema instance methods
 UserSchema.methods.createJWT = function () {
   return jwt.sign(
