@@ -7,6 +7,7 @@ interface IRequest extends Request {
 export const authUser = async (
   req: IRequest,
   res: Response,
+  err: any,
   next: NextFunction,
 ): Promise<void> => {
   // accessing authorization header to check if token exists

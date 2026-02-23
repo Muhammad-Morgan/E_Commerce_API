@@ -22,6 +22,7 @@ import { notFoundMiddleware } from "./middleware/not-found";
 
 // importing routes
 import { authRouter } from "./routes/auth";
+import { userRouter } from "./routes/user";
 
 // common middleware
 app.use(express.json());
@@ -31,11 +32,12 @@ app.use(cookieParser(process.env.JWT_SECRET));
 
 // testing route
 app.get("/", (req: Request, res: Response) => {
-  res.status(200).send("Still testing the water");
+  res.status(200).send("<h1>E-Commerce Home Page</h1>");
 });
 
 // routes
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
 
 // error fallback - Order is IMP
 app.use(notFoundMiddleware);

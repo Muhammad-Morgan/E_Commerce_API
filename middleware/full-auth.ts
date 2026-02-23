@@ -7,6 +7,7 @@ interface IRequest extends Request {
 export const authenticateUser = async (
   req: IRequest,
   res: Response,
+  err: any,
   next: NextFunction,
 ): Promise<void> => {
   let token: string | undefined | null;
