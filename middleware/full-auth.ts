@@ -5,9 +5,9 @@ interface IRequest extends Request {
   user: { name?: string; userId: string; role: "admin" | "user" };
 }
 export const authenticateUser = async (
+  err: any,
   req: IRequest,
   res: Response,
-  err: any,
   next: NextFunction,
 ): Promise<void> => {
   let token: string | undefined | null;

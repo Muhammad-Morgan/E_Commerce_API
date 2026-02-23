@@ -2,9 +2,9 @@ import { StatusCodes } from "http-status-codes";
 import { NextFunction, Request, Response } from "express";
 
 export const errorHandlerMiddleware = (
+  err: any,
   req: Request,
   res: Response,
-  err: any,
   next: NextFunction,
 ) => {
   // define custom error model.

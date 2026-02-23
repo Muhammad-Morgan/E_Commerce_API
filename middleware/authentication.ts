@@ -5,9 +5,9 @@ interface IRequest extends Request {
   user: { name: string; userId: string; role: "admin" | "user" };
 }
 export const authUser = async (
+  err: any,
   req: IRequest,
   res: Response,
-  err: any,
   next: NextFunction,
 ): Promise<void> => {
   // accessing authorization header to check if token exists
