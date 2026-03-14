@@ -10,9 +10,13 @@ type PayloadProps = {
   };
   res: Response;
 };
-export const createJWT = ({ payload }: { payload: any }) => {
+export const createJWT = ({
+  payload,
+}: {
+  payload: { userId: string; name: string; role: "admin" | "user" };
+}) => {
   const token = jwt.sign(
-    { name: payload.name, userId: payload._id, role: payload.role },
+    { name: payload.name, userId: payload.userId, role: payload.role },
     process.env.JWT_SECRET!,
     {
       expiresIn: process.env.JWT_LIFETIME as StringValue,

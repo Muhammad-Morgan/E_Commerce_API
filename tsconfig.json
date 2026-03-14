@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "CommonJS",
     "target": "esnext",
-    "types": ["node","express"],
+    "types": ["node", "express"],
     // For nodejs:
     // "lib": ["esnext"],
     // and npm install -D @types/node
@@ -40,5 +40,9 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     "esModuleInterop": true
+  },
+  "include": ["**/*.ts", "types/**/*.d.ts"],
+  "ts-node": {
+    "files": true,
   }
 }

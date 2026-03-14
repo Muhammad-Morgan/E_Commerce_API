@@ -3,6 +3,7 @@ import { User } from "../models/User";
 import { BadRequestError, UnauthenticatedError } from "../errors";
 import { StatusCodes } from "http-status-codes";
 import { attachCookiesToResponse } from "../utils";
+import createTokenUser from "../utils/createTokenUser";
 
 const register = async (req: Request, res: Response) => {
   // check if email exists already
@@ -19,9 +20,13 @@ const register = async (req: Request, res: Response) => {
   const user = await User.create({ name, email, password, role });
 
   // creating token
-  const tokenUser = { name, userId: user._id, role: user.role };
-
-  attachCookiesToResponse({ payload: { tokenUser, res } });
+  const passedUser = {
+    userId: user._id.toString(),
+    name: user.name,
+    role: user.role,
+    res,
+  };
+  createTokenUser(passedUser);
   res.status(StatusCodes.CREATED).json({
     user: { name: user.name, role: user.role, userId: user._id },
   });
@@ -32,20 +37,22 @@ const login = async (req: Request, res: Response) => {
     throw new BadRequestError("Please fill the credentials");
   const existingUser = await User.findOne({ email });
   if (!existingUser) throw new UnauthenticatedError("No user found");
-  const isMatch = existingUser.comparePassword(password);
+  const isMatch = await existingUser.comparePassword(password);
+
   if (!isMatch) throw new UnauthenticatedError("Wrong password");
   // calling attach...
-  const tokenUser = {
-    userId: existingUser._id,
+  const user = {
+    userId: existingUser._id.toString(),
     name: existingUser.name,
     role: existingUser.role,
+    res,
   };
-  attachCookiesToResponse({ payload: { tokenUser, res } });
+  createTokenUser(user);
   res.status(StatusCodes.OK).json({
     user: {
       name: existingUser.name,
       role: existingUser.role,
-      userId: existingUser._id,
+      userId: existingUser._id.toString(),
     },
   });
 };

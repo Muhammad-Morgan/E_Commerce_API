@@ -41,8 +41,10 @@ const UserSchema = new mongoose.Schema<IUser>({
 UserSchema.pre(
   "save" as any,
   async function (next: mongoose.CallbackWithoutResultAndOptionalError) {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    if (this.modifiedPaths().includes("password")) {
+      const salt = await bcrypt.genSalt(10);
+      this.password = await bcrypt.hash(this.password, salt);
+    }
     next();
   },
 );
