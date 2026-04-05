@@ -12,6 +12,7 @@ const app = express();
 // rest of packages
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import uploadFile from "express-fileupload";
 
 // DB
 import { connectDB } from "./db/connect";
@@ -29,7 +30,8 @@ import { productRouter } from "./routes/product";
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cookieParser(process.env.JWT_SECRET));
-// app.use(express.static())
+app.use(express.static("./public"));
+app.use(uploadFile());
 
 // testing route
 app.get("/", (req: Request, res: Response) => {
