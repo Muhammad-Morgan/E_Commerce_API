@@ -7,6 +7,7 @@ import {
   UnauthenticatedError,
 } from "../errors";
 import { checkPersmissions } from "../utils/checkPermissions";
+import createTokenUser from "../utils/createTokenUser";
 
 // That's an admin action
 const getAllUsers = async function name(req: Request, res: Response) {
@@ -39,13 +40,13 @@ const updateUser = async function name(req: Request, res: Response) {
   updatedUser.email = email;
   updatedUser.name = name;
   await updatedUser.save();
-  // const tokenUser = {
-  //   res,
-  //   name,
-  //   userId: req.user.userId,
-  //   role: updatedUser.role,
-  // };
-  // createTokenUser(tokenUser);
+  const tokenUser = {
+    res,
+    name,
+    userId: req.user.userId,
+    role: updatedUser.role,
+  };
+  createTokenUser(tokenUser);
   res.status(StatusCodes.OK).json({
     name,
     userId: req.user.userId,

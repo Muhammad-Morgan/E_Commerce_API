@@ -13,7 +13,6 @@ export const authUser = (req: Request, res: Response, next: NextFunction) => {
       iat: number;
       userId: string;
     };
-    // if(!payload)
     req.user = {
       name: payload.name,
       role: payload.role,
@@ -27,8 +26,6 @@ export const authUser = (req: Request, res: Response, next: NextFunction) => {
 export const authorizePermissions = (...roles: string[]) => {
   // return another function to be used as callback
   return (req: Request, res: Response, next: NextFunction) => {
-    console.log(roles, req.user.role);
-
     // checking for roles
     if (!roles.includes(req.user.role))
       throw new UnauthorizedError("unauthorized access");

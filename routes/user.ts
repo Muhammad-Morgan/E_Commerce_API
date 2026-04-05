@@ -9,6 +9,7 @@ import {
 import express from "express";
 const router = express.Router();
 import { authUser, authorizePermissions } from "../middleware/authentication";
+
 // for middleware I guess
 // here for the args. We add the roles that can perform such actions
 router.get("/", authUser, authorizePermissions("admin"), getAllUsers);

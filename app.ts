@@ -23,6 +23,7 @@ import { notFoundMiddleware } from "./middleware/not-found";
 // importing routes
 import { authRouter } from "./routes/auth";
 import { userRouter } from "./routes/user";
+import { productRouter } from "./routes/product";
 
 // common middleware
 app.use(express.json());
@@ -38,6 +39,7 @@ app.get("/", (req: Request, res: Response) => {
 // routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/products", productRouter);
 
 // error fallback - Order is IMP
 app.use(notFoundMiddleware);

@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { User } from "../models/User";
 import { BadRequestError, UnauthenticatedError } from "../errors";
 import { StatusCodes } from "http-status-codes";
-import { attachCookiesToResponse } from "../utils";
 import createTokenUser from "../utils/createTokenUser";
 
 const register = async (req: Request, res: Response) => {
