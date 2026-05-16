@@ -1,4 +1,3 @@
-import { required } from "joi";
 import mongoose from "mongoose";
 const ReviewSchema = new mongoose.Schema(
   {
@@ -34,5 +33,51 @@ const ReviewSchema = new mongoose.Schema(
 );
 
 ReviewSchema.index({ product: 1, user: 1 }, { unique: true }); // a user with userId: 123 can leave for a product with productId: 456 only 1 review
+
+ReviewSchema.statics.calculateAverageRate = async function (
+  this: any,
+  productId: mongoose.Types.ObjectId,
+) {
+  const result = await this.aggregate([
+    {
+      $match: {
+        product: productId,
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        averageRating: {
+          $avg: "$rating",
+        },
+        numOfReviews: {
+          $sum: 1,
+        },
+      },
+    },
+  ]);
+
+  // updating product
+  try {
+    await this.model("Product").findOneAndUpdate(
+      { _id: productId },
+      {
+        averageRating: Math.ceil(result[0]?.averageRating || 0),
+        numOfReviews: result[0]?.numOfReviews || 0,
+      },
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// running our static method on both save and delete
+ReviewSchema.post("save", async function (this: any) {
+  await this.constructor.calculateAverageRate(this.product);
+});
+
+ReviewSchema.post("remove", async function (this: any) {
+  await this.constructor.calculateAverageRate(this.product);
+});
 
 export default mongoose.model("Review", ReviewSchema);

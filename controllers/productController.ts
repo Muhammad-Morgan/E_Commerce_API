@@ -20,7 +20,7 @@ export const createProduct = async (req: Request, res: Response) => {
 
 export const getSingleProduct = async (req: Request, res: Response) => {
   const productId = req.params.id;
-  const product = await Product.findOne({ _id: productId });
+  const product = await Product.findOne({ _id: productId }).populate("reviews");
   if (!product)
     throw new NotFoundError(`No product with ID ${productId} was found`);
   res.json({ product });
@@ -38,10 +38,10 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 export const deleteProduct = async (req: Request, res: Response) => {
   const productId = req.params.id;
-  const product = await Product.findByIdAndDelete(productId);
+  const product = await Product.findOne({ _id: productId });
   if (!product)
-    if (!product)
-      throw new NotFoundError(`No product with ID ${productId} was found`);
+    throw new NotFoundError(`No product with ID ${productId} was found`);
+  await product.remove();
   res.json({ msg: `Product ID ${productId} has been deleted` });
 };
 

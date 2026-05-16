@@ -1,4 +1,4 @@
-## Hosted Project
+x## Hosted Project
 
 [E-Commerce API Render URL](https://node-course-e-commerce.onrender.com/)
 
@@ -252,27 +252,27 @@
 
 #### Get All Reviews and Get Single Review
 
-- [] both public routes, typical setup
+- [x] both public routes, typical setup
 
 #### Delete Review
 
-- [] get id from req.params
-- [] check if review exists
-- [] if no review, 404
-- [] check permissions (req.user, review.user)
-- [] use await review.remove()
-- [] send back 200
+- [x] get id from req.params
+- [x] check if review exists
+- [x] if no review, 404
+- [x] check permissions (req.user, review.user)
+- [x] use await review.remove()
+- [x] send back 200
 
 #### Update Review
 
-- [] get id from req.params
-- [] get {rating, title comment} from req.body
-- [] check if review exists
-- [] if no review, 404
-- [] check permissions
-- [] set review properties equal to rating, title, comment
-- [] use await review.save()
-- [] send back 200
+- [x] get id from req.params
+- [x] get {rating, title comment} from req.body
+- [x] check if review exists
+- [x] if no review, 404
+- [x] check permissions
+- [x] set review properties equal to rating, title, comment
+- [x] use await review.save()
+- [x] send back 200
 
 #### Populate
 
@@ -286,26 +286,26 @@
 
 #### Order Schema
 
-- [] create Order.js in models folder
-- [] create Schema
-- [] tax : {type:Number}
-- [] shippingFee: {type:Number}
-- [] subtotal: {type:Number}
-- [] total: {type:Number}
-- [] orderItems:[]
-- [] status:{type:String}
-- [] user
-- [] clientSecret:{type:String}
-- [] paymentId:{type:String}
-- [] set timestamps
-- [] export Order model
+- [x] create Order.js in models folder
+- [x] create Schema
+- [x] tax : {type:Number}
+- [x] shippingFee: {type:Number}
+- [x] subtotal: {type:Number}
+- [x] total: {type:Number}
+- [x] orderItems:[]
+- [x] status:{type:String}
+- [x] user
+- [x] clientSecret:{type:String}
+- [x] paymentId:{type:String}
+- [x] set timestamps
+- [x] export Order model
 
 #### Order Structure
 
-- [] add orderController file in controllers
-- [] export (getAllOrders, getSingleOrder, getCurrentUserOrders,
-  createOrder, updateOrder) functions
-- [] res.send('function name')
+- [x] add orderController file in controllers
+- [x] export (getAllOrders, getSingleOrder, getCurrentUserOrders,
+      createOrder, updateOrder) functions
+- [x] res.send('function name')
 - [] setup orderRoutes file in routes
 - [] import all controllers
 - [] authenticate user in all routes

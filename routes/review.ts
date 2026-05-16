@@ -9,6 +9,7 @@ import {
   createReview,
   updateReview,
   deleteReview,
+  getSingleProductReview,
 } from "../controllers/reviewController";
 
 router.route("/").get(getAllReviews).post(authUser, createReview);
@@ -18,5 +19,7 @@ router
   .get(getSingleReview)
   .patch(authUser, updateReview)
   .delete(authUser, deleteReview);
+
+router.route("/:id/reviews").get(getSingleProductReview);
 
 export { router as reviewRouter };
