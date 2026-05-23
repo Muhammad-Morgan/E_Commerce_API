@@ -40,6 +40,14 @@ import rateLimiter from "express-rate-limit";
 import helmet from "helmet";
 import xss from "xss-clean";
 import cors from "cors";
+import mongoSanitize from "express-mongo-sanitize";
+
+app.set("trust proxy", 1);
+app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 60 }));
+app.use(helmet());
+app.use(xss());
+app.use(cors());
+app.use(mongoSanitize());
 
 // testing route
 app.get("/", (req: Request, res: Response) => {

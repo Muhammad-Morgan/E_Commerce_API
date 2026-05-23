@@ -349,25 +349,26 @@ x## Hosted Project
 
 ```bash
 - windows_amd64.exe build -i E-Commerce_API.postman_collection.json -o index.html
+
 ```
 
 #### Security Packages
 
-- [] express-rate-limiter
-- [] helmet
-- [] xss-clean
-- [] express-mongo-sanitize
-- [] cors (cookies!!!!)
+- [x] express-rate-limiter
+- [x] helmet
+- [x] xss-clean
+- [x] express-mongo-sanitize
+- [x] cors (cookies!!!!)
 
 #### Deploy on Heroku
 
-- [] heroku account and heroku cli
-- [] remove/copy from the main repo
-- [] add dev command "nodemon app.js"
-- [] change start to "node app.js"
-- [] setup node version in package.json
-- [] "engines": {"node": "14.x"}
-- [] Procfile "web: node app.js"
+- [x] heroku account and heroku cli
+- [x] remove/copy from the main repo
+- [x] add dev command "nodemon app.js"
+- [x] change start to "node app.js"
+- [x] setup node version in package.json
+- [x] "engines": {"node": "14.x"}
+- [x] Procfile "web: node app.js"
 - [] remove existing git repo
 - [] rm -rf .git - mac,
 - [] git init
