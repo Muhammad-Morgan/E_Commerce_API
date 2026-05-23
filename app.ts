@@ -35,6 +35,12 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static("./public"));
 app.use(uploadFile());
 
+//security packages
+import rateLimiter from "express-rate-limit";
+import helmet from "helmet";
+import xss from "xss-clean";
+import cors from "cors";
+
 // testing route
 app.get("/", (req: Request, res: Response) => {
   res.status(200).send("<h1>E-Commerce Home Page</h1>");
