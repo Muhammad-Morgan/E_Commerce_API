@@ -4,7 +4,8 @@
   "description": "api for handling the full backend of e-commerce web application",
   "main": "app.ts",
   "scripts": {
-    "start": "node app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js",
     "dev": "nodemon app.ts"
   },
   "author": "Muhammad Morgan",
