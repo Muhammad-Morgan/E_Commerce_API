@@ -23,6 +23,7 @@ export const getSingleReview = async (req: Request, res: Response) => {
 
 export const createReview = async (req: Request, res: Response) => {
   const productId = req.body.product;
+  if (!productId) throw new BadRequestError("Please provide a product ID");
   // check if a product exists
   const isValidProduct = await Product.findById(productId);
   if (!isValidProduct)
@@ -46,9 +47,9 @@ export const updateReview = async (req: Request, res: Response) => {
     throw new NotFoundError(`Couldn't find a review with ID: ${reviewId}`);
   const { rating, title, comment } = req.body;
   checkPersmissions(req.user, String(review.user));
-  review.rating = rating;
-  review.title = title;
-  review.comment = comment;
+  rating && (review.rating = rating);
+  title && (review.title = title);
+  comment && (review.comment = comment);
   await review.save();
   res.status(StatusCodes.OK).json({ review });
 };

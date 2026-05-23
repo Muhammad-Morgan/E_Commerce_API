@@ -15,7 +15,7 @@ router
   .get(authUser, authorizePermissions("admin"), getAllOrders)
   .post(authUser, createOrder);
 
-router.route("/showAllMyOrders").get(authUser, getCurrentUserOrders);
+router.route("/showallmyorders").get(authUser, getCurrentUserOrders);
 
 router.route("/:id").get(authUser, getSingleOrder).patch(authUser, updateOrder);
 

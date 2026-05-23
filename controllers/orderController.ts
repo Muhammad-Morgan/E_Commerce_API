@@ -6,23 +6,20 @@ import { BadRequestError, NotFoundError } from "../errors";
 import { StatusCodes } from "http-status-codes";
 
 export async function getAllOrders(req: Request, res: Response) {
-  const orders = await Order.find({}).populate("User", "name email");
+  const orders = await Order.find({});
   if (!orders || orders.length < 1) throw new NotFoundError("No orders found");
   res.status(StatusCodes.OK).json({ orders, count: orders.length });
 }
 export async function getSingleOrder(req: Request, res: Response) {
   const orderId = req.params.id;
   if (!orderId) throw new BadRequestError("Please provide order id");
-  const order = await Order.findOne({ _id: orderId }).populate(
-    "User",
-    "name email",
-  );
+  const order = await Order.findOne({ _id: orderId });
   if (!order) throw new NotFoundError(`No order with id : ${orderId}`);
   checkPersmissions(req.user, order.user.toString());
   res.status(StatusCodes.OK).json({ order });
 }
 export async function getCurrentUserOrders(req: Request, res: Response) {
-  const orders = await Order.find({ user: req.user });
+  const orders = await Order.find({ user: req.user.userId });
   if (!orders || orders.length < 1)
     throw new NotFoundError(
       `No orders associated to user : ${req.user.userId}`,
@@ -87,13 +84,13 @@ export async function createOrder(req: Request, res: Response) {
 export async function updateOrder(req: Request, res: Response) {
   const orderId = req.params.id;
   if (!orderId) throw new BadRequestError("Please provide order Id");
-  const order = await Order.findOne({ _id: orderId }).populate(
-    "User",
-    "name email",
-  );
+  const { paymentIntentId } = req.body;
+  const order = await Order.findOne({ _id: orderId });
   if (!order)
     throw new NotFoundError(`Couldn't found order with order Id: ${orderId}`);
   checkPersmissions(req.user, order.user.toString());
+  order.paymentIntentId = paymentIntentId;
+  order.status = "paid";
   order.save();
   res.status(StatusCodes.OK).json({ order, msg: "Order updated" });
 }

@@ -20,6 +20,6 @@ router
   .patch(authUser, updateReview)
   .delete(authUser, deleteReview);
 
-router.route("/:id/reviews").get(getSingleProductReview);
+router.route("/:id/productreviews").get(getSingleProductReview);
 
 export { router as reviewRouter };

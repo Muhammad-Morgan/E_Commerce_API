@@ -8,7 +8,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
   const products = await Product.find({ user: req.user.userId });
   if (products.length === 0)
     throw new NotFoundError("No products found for this user");
-  res.json({ products, count: products.length });
+  res.status(StatusCodes.OK).json({ products, count: products.length });
 };
 
 export const createProduct = async (req: Request, res: Response) => {
@@ -23,7 +23,7 @@ export const getSingleProduct = async (req: Request, res: Response) => {
   const product = await Product.findOne({ _id: productId }).populate("reviews");
   if (!product)
     throw new NotFoundError(`No product with ID ${productId} was found`);
-  res.json({ product });
+  res.status(StatusCodes.OK).json({ product });
 };
 
 export const updateProduct = async (req: Request, res: Response) => {
@@ -33,7 +33,7 @@ export const updateProduct = async (req: Request, res: Response) => {
   });
   if (!product)
     throw new NotFoundError(`No product with ID ${productId} was found`);
-  res.json({ product });
+  res.status(StatusCodes.OK).json({ product });
 };
 
 export const deleteProduct = async (req: Request, res: Response) => {
@@ -42,7 +42,9 @@ export const deleteProduct = async (req: Request, res: Response) => {
   if (!product)
     throw new NotFoundError(`No product with ID ${productId} was found`);
   await product.remove();
-  res.json({ msg: `Product ID ${productId} has been deleted` });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: `Product ID ${productId} has been deleted` });
 };
 
 export const uploadImage = async (req: Request, res: Response) => {

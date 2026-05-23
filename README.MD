@@ -306,38 +306,38 @@ x## Hosted Project
 - [x] export (getAllOrders, getSingleOrder, getCurrentUserOrders,
       createOrder, updateOrder) functions
 - [x] res.send('function name')
-- [] setup orderRoutes file in routes
-- [] import all controllers
-- [] authenticate user in all routes
-- [] getAllOrders admin only
-- [] typical REST setup
-- [] router.route('/showAllMyOrders').get(getCurrentUserOrders)
-- [] import orderRoutes as orderRouter in the app.js
-- [] setup app.use('/api/v1/orders', orderRouter)
+- [x] setup orderRoutes file in routes
+- [x] import all controllers
+- [x] authenticate user in all routes
+- [x] getAllOrders admin only
+- [x] typical REST setup
+- [x] router.route('/showAllMyOrders').get(getCurrentUserOrders)
+- [x] import orderRoutes as orderRouter in the app.js
+- [x] setup app.use('/api/v1/orders', orderRouter)
 
 #### Order in Postman
 
 #### Create Order
 
-- [] most complex
+- [x] most complex
 
 #### Get All Orders and Get Single Order
 
-- [] getAllOrders - admin only
-- [] getSingleOrder - chechPermissions
+- [x] getAllOrders - admin only
+- [x] getSingleOrder - chechPermissions
 
 #### Get Current User Orders
 
-- [] find orders where user is equal to req.user.userId
+- [x] find orders where user is equal to req.user.userId
 
 #### Update Order
 
-- [] get order id
-- [] get paymentIntentId (req.body)
-- [] get order
-- [] if does not exist - 404
-- [] check permissions
-- [] set paymentIntentId and status as 'paid'
+- [x] get order id
+- [x] get paymentIntentId (req.body)
+- [x] get order
+- [x] if does not exist - 404
+- [x] check permissions
+- [x] set paymentIntentId and status as 'paid'
 - [] order.save()
 
 #### Create Docs
