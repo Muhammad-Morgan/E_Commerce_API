@@ -338,14 +338,18 @@ x## Hosted Project
 - [x] if does not exist - 404
 - [x] check permissions
 - [x] set paymentIntentId and status as 'paid'
-- [] order.save()
+- [x] order.save()
 
 #### Create Docs
 
-- [] [Docgen Library] (https://github.com/thedevsaddam/docgen)
-- [] Export Postman Collection
-- [] docgen build -i fileName.json -o index.html
-- [] create index.html in public
+- [x] [Docgen Library] (https://github.com/thedevsaddam/docgen)
+- [x] Export Postman Collection
+- [x] docgen build -i fileName.json -o index.html
+- [x] create index.html in public
+
+```bash
+- windows_amd64.exe build -i E-Commerce_API.postman_collection.json -o index.html
+```
 
 #### Security Packages
 

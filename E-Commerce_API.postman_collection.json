@@ -1,0 +1,648 @@
+{
+  "info": {
+    "_postman_id": "f6a3d974-49d5-44a0-93f4-e6c26b77ea38",
+    "name": "E-Commerce_API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49868442",
+    "_collection_link": "https://go.postman.co/collection/49868442-f6a3d974-49d5-44a0-93f4-e6c26b77ea38?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"mohamed2@example.com\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/auth/login",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"7amo\"\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/auth/logout",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"mohamed\",\r\n    \"email\": \"mohamed2@example.com\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/auth/register",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "getAllUsers",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/users",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getSingleUser",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"koko2@example.com\",\r\n    \"password\": \"password123\"\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/users/69ad925bc1cddf0bfd7e615e",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "users",
+                "69ad925bc1cddf0bfd7e615e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "showCurrentUser",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/users/showMe",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "users",
+                "showMe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateUser",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/users/updateUser",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "users",
+                "updateUser"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateUserPassword",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/users/updateUserPassword",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "users",
+                "updateUserPassword"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "getAllProducts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/products",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getSingleProduct",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/products/69fca008a5f689b48f7be5eb",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "products",
+                "69fca008a5f689b48f7be5eb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"armchair\",\r\n    \"price\": 12599,\r\n    \"image\": \"https://dl.airtable.com/.attachmentThumbnails/530c07c5ade5acd9934c8dd334458b86/cf91397f\",\r\n    \"colors\": [\"#000\", \"#00ff00\", \"#0000ff\"],\r\n    \"company\": \"marcos\",\r\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\r\n    \"category\": \"bedroom\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/products/69fca008a5f689b48f7be5eb",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "products",
+                "69fca008a5f689b48f7be5eb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteProduct",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"armchair\",\r\n    \"price\": 12599,\r\n    \"image\": \"https://dl.airtable.com/.attachmentThumbnails/530c07c5ade5acd9934c8dd334458b86/cf91397f\",\r\n    \"colors\": [\"#000\", \"#00ff00\", \"#0000ff\"],\r\n    \"company\": \"marcos\",\r\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\r\n    \"category\": \"bedroom\"\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/products/69fca008a5f689b48f7be5eb",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "products",
+                "69fca008a5f689b48f7be5eb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "uploadImage",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "f7b7bd25-f782-4343-987e-d9f0d8c86738",
+                  "src": "/C:/Users/user/OneDrive/Desktop/test-pic.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{URL}}/products/uploadimage",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "products",
+                "uploadimage"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"armchair\",\r\n    \"price\": 12599,\r\n    \"image\": \"https://dl.airtable.com/.attachmentThumbnails/530c07c5ade5acd9934c8dd334458b86/cf91397f\",\r\n    \"colors\": [\"#000\", \"#00ff00\", \"#0000ff\"],\r\n    \"company\": \"marcos\",\r\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\r\n    \"category\": \"bedroom\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/products",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Review",
+      "item": [
+        {
+          "name": "getAllReviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/reviews",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getSingleReview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/reviews/6a0833a884cd8abbcf2d615e",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "reviews",
+                "6a0833a884cd8abbcf2d615e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createReview",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"product\": \"6a11a6a92332f635e66c75ab\",\r\n    \"rating\": 3,\r\n    \"title\": \"not bad product\",\r\n    \"comment\": \"....\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/reviews",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateReview",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\r\n    \"rating\": 2,\r\n    \"title\": \"bad product\",\r\n    \"comment\": \"waaaaaaa\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/reviews/6a11a9eda6465d07cc5a9058",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "reviews",
+                "6a11a9eda6465d07cc5a9058"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteReview",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/reviews/6a0833a884cd8abbcf2d615e",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "reviews",
+                "6a0833a884cd8abbcf2d615e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getSingleProductReview",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\r\n    \"rating\": 2,\r\n    \"title\": \"bad product\",\r\n    \"comment\": \"waaaaaaa\"\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/reviews/6a11a6a92332f635e66c75ab/productreviews",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "reviews",
+                "6a11a6a92332f635e66c75ab",
+                "productreviews"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "getAllOrders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/orders",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getSingleOrder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/orders/6a0e190dc70d631af65ae605",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "orders",
+                "6a0e190dc70d631af65ae605"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getCurrentUserOrders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/orders/showallmyorders",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "orders",
+                "showallmyorders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createOrder",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tax\": 499,\r\n    \"shippingFee\": 799,\r\n    \"items\": [\r\n      {\r\n        \"name\": \"bed\",\r\n        \"price\": 2699,\r\n        \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\r\n        \"amount\": 3,\r\n        \"product\": \"6a11a6a92332f635e66c75ab\"\r\n      },\r\n      {\r\n        \"name\": \"chair\",\r\n        \"price\": 2999,\r\n        \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\r\n        \"amount\": 2,\r\n        \"product\": \"6a11a6a92332f635e66c75ab\"\r\n      }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/orders",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateOrder",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"paymentIntentId\": \"topsecret123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/orders/6a11add9740445761851a1c6",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "orders",
+                "6a11add9740445761851a1c6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "URL",
+      "value": ""
+    }
+  ]
+}
